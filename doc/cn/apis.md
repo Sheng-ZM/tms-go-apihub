@@ -47,6 +47,7 @@ API列表如下：
 | checkRight  | 检查权限 |
 | fillBaseInfo | 添加基本信息 |
 | logToFile | 将日志写入文件，默认目录放在log目录中（不支持Gin框架输出的日志） |
+| apiSleep | 主要应用在schedule，定时功能 |
 
 表4：普罗米修斯相关API
 | API名称 | 功能简述 |
@@ -58,6 +59,7 @@ API列表如下：
 | 版本 | 修订人 | 说明 |
 | v0.202206 | wangbinbupt |  |
 | v0.20220728 | Sheng-ZM | 整理API说明，添加API使用范例 |
+| v0.202201009 | Sheng-ZM | 新增apiSleep说明 |
 # 启动相关API
 
 程序调用`API`既有外部`API`也有内部`API`，但无所谓内外，对于`command`名称调用的API都是指向的一个`API`，仅仅是地址不同。
@@ -871,7 +873,6 @@ apihub程序启动后，首次调用conf配置文件夹时，屏幕打印输`出
 | 403    | StatusForbidden，获取信息失败           |
 | 500    | StatusInternalServerError，获取信息失败 |
 
-## 
 
 ## 6. 默认执行权限（setDefaultAccessRight API）
 
@@ -1113,6 +1114,53 @@ apihub程序启动后，首次调用conf配置文件夹时，屏幕打印输`出
 | 200    | StatusOK，获取信息成功                  |
 | 403    | StatusForbidden，获取信息失败           |
 | 500    | StatusInternalServerError，获取信息失败 |
+
+## 10. 睡眠（apiSleep）
+### 10.1. 功能介绍
+主要应用在schedule编排过程中，实现编排过程中的暂停需求。
+### 10.2. 位置
+```
+./broker/apis/sleep.go
+```
+### 10.3. API输入介绍
+提供时分秒的填写选项，仅支持整数输入
+
+示例：
+```
+{
+  "type": "api",
+  "mode": "normal",
+  "api": {
+      "name": "apiSleep",
+      "command": "apiSleep",
+      "args": [
+          {
+              "name": "hour",
+              "value": {
+                  "from": "literal",
+                  "content": "0"
+              }
+          },
+          {
+              "name": "minute",
+              "value": {
+                  "from": "literal",
+                  "content": "1"
+              }
+          },
+          {
+              "name": "second",
+              "value": {
+                  "from": "literal",
+                  "content": "0"
+              }
+          }
+      ]
+  }
+}
+```
+### 10.4. 状态码
+无
 
 # 普罗米修斯相关API
 
