@@ -116,12 +116,16 @@ func parseCurlCmd(line string) {
 	}
 
 	if strings.Contains(line, "-H") {
-		hContent, hIndex := postmaninternal.GetStringBetweenSpecifySymbols(line[strings.Index(line, "-H"):], "\"", "\"")
-		if (hIndex != -1) && (strings.Contains(hContent, "application/json")) {
-			apiHubHttpConf.Requestcontenttype = "json"
-		} else {
-			apiHubHttpConf.Requestcontenttype = "json" // default to application/json
-		}
+
+		/*
+			hContent, hIndex := postmaninternal.GetStringBetweenSpecifySymbols(line[strings.Index(line, "-H"):], "\"", "\"")
+			if (hIndex != -1) && (strings.Contains(hContent, "application/json")) {
+				apiHubHttpConf.Requestcontenttype = "json"
+			} else {
+				apiHubHttpConf.Requestcontenttype = "json" // default to application/json
+			}
+		*/
+		apiHubHttpConf.Requestcontenttype = "json" // default to application/json
 	}
 
 	if strings.Contains(line, "\"http") {

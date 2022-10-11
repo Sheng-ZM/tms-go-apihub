@@ -37,9 +37,11 @@ tool/postman/cmd/test.sh
 example/flows/__INTERNAL
 broker/tms-gah-broker
 
-example/postman/
 tool/schedule/schedule/
 tool/postman/cmd/__INTERNAL/
 tool/curl/httpapis/
-example/main_autoschedule.json
 example/main_备份.json
+example/main_拨测.json
+
+allinone/api-hub-all-in-one/
+example/schedules/dialTest/healthCheck.json
